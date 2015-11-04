@@ -1,5 +1,17 @@
 #!/usr/bin/env python
-import sys
+from __future__ import print_function
+
+import os, sys, readline
+
+get_input = input
+if sys.version_info[:2] <= (2, 7):
+    get_input = raw_input
+
+try:
+    readline.read_init_file(os.path.join(os.path.expanduser('~'), 'pedit.rc'))
+except IOError:
+    readline.parse_and_bind('tab: complete')
+    readline.parse_and_bind('set editing-mode emacs')
 
 if __name__ == '__main__':
     try:
@@ -12,7 +24,7 @@ if __name__ == '__main__':
     with open(filename, 'w') as file_obj:
         try:
             sentinel = ''
-            message = '\n'.join(iter(raw_input, sentinel))
+            message = '\n'.join(iter(get_input, sentinel))
         except KeyboardInterrupt:
             print("Canceled")
             sys.exit(1)
