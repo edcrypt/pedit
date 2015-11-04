@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-from __future__ import print_function
+# -*- coding: utf-8 -*-
+from __future__ import print_function, unicode_literals
 
 import os, sys, readline
 
@@ -23,8 +24,8 @@ if __name__ == '__main__':
     print('Enter commit message bellow. Terminate with an empty line.')
     with open(filename, 'w') as file_obj:
         try:
-            sentinel = ''
-            message = '\n'.join(iter(get_input, sentinel))
+            sentinel = b''
+            message = b'\n'.join(iter(get_input, sentinel))
         except KeyboardInterrupt:
             print("Canceled")
             sys.exit(1)
